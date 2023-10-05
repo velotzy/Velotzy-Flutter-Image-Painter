@@ -768,7 +768,7 @@ class ImagePainterState extends State<ImagePainter> {
     if (widget.isSignature) {
       final _boundary = _repaintKey.currentContext!.findRenderObject()
           as RenderRepaintBoundary;
-      _convertedImage = await _boundary.toImage(pixelRatio: 3);
+      _convertedImage = await _boundary.toImage(pixelRatio: 1);
     } else if (widget.byteArray != null && _controller.paintHistory.isEmpty) {
       return widget.byteArray;
     } else {
