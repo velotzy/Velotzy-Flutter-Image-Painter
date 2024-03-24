@@ -63,6 +63,7 @@ class ImagePainterController extends ChangeNotifier {
   
   
     this.onDrawCallback,
+  
     double strokeWidth = 4.0,
     Color color = Colors.red,
     PaintMode mode = PaintMode.freeStyle,

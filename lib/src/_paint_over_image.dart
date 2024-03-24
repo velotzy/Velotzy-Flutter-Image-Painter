@@ -839,7 +839,7 @@ class ImagePainterState extends State<ImagePainter> {
                   borderRadius: BorderRadius.circular(40),
                 ),
                 surfaceTintColor: Colors.transparent,
-                icon: Icon(icon, color: widget.optionColor ?? Colors.grey[700]),
+                icon: Icon(icon, color: Colors.grey[700]),
                 itemBuilder: (_) => [_showOptionsRow()],
               );
             },
