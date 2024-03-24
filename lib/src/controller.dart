@@ -12,6 +12,7 @@ class ImagePainterController extends ChangeNotifier {
   late PaintMode _mode;
   late String _text;
   late bool _fill;
+  final VoidCallback? onDrawCallback;
   late ui.Image? _image;
   Rect _rect = Rect.zero;
 
@@ -59,6 +60,9 @@ class ImagePainterController extends ChangeNotifier {
           .isNotEmpty;
 
   ImagePainterController({
+  
+  
+    this.onDrawCallback,
     double strokeWidth = 4.0,
     Color color = Colors.red,
     PaintMode mode = PaintMode.freeStyle,
