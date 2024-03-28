@@ -14,4 +14,5 @@ class TextDelegate {
   final String pin = "Pin";
   final String done = "Done";
   final String clearAllProgress = "Clear All Progress";
+  final String fill = "Fill";
 }
