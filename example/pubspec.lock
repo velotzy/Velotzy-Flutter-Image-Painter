@@ -54,6 +54,7 @@ packages:
     description:
       name: ffi
 <<<<<<< HEAD
+<<<<<<< HEAD
       sha256: "7bf0adc28a23d395f19f3f1eb21dd7cfd1dd9f8e1c50051c069122e6853bc878"
       url: "https://pub.dev"
     source: hosted
@@ -64,6 +65,12 @@ packages:
     source: hosted
     version: "2.1.2"
 >>>>>>> 2e0f4af (v0.7.0 Candidate)
+=======
+      sha256: "7bf0adc28a23d395f19f3f1eb21dd7cfd1dd9f8e1c50051c069122e6853bc878"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+>>>>>>> c0af697 (fixed the checkbox issue)
   flutter:
     dependency: "direct main"
     description: flutter
@@ -289,6 +296,9 @@ packages:
       url: "https://pub.dev"
     source: hosted
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c0af697 (fixed the checkbox issue)
     version: "0.1.4-beta"
   win32:
     dependency: transitive
@@ -298,9 +308,12 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.1.1"
+<<<<<<< HEAD
 =======
     version: "13.0.0"
 >>>>>>> 2e0f4af (v0.7.0 Candidate)
+=======
+>>>>>>> c0af697 (fixed the checkbox issue)
   xdg_directories:
     dependency: transitive
     description:
@@ -311,9 +324,14 @@ packages:
     version: "1.0.4"
 sdks:
 <<<<<<< HEAD
+<<<<<<< HEAD
   dart: ">=3.1.0 <4.0.0"
   flutter: ">=3.10.0"
 =======
   dart: ">=3.3.0-279.1.beta <4.0.0"
   flutter: ">=3.18.0-18.0.pre.54"
 >>>>>>> 2e0f4af (v0.7.0 Candidate)
+=======
+  dart: ">=3.1.0 <4.0.0"
+  flutter: ">=3.10.0"
+>>>>>>> c0af697 (fixed the checkbox issue)
