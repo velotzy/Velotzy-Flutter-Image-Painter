@@ -78,7 +78,7 @@ class _ImagePainterExampleState extends State<ImagePainterExample> {
       body: ImagePainter.asset(
         "assets/sample.jpg",
         key: _imageKey,
-        scalable: true,
+        
         initialStrokeWidth: 2,
         textDelegate: TextDelegate(),
         initialColor: Colors.green,

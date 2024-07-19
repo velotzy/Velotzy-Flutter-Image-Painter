@@ -521,7 +521,7 @@ class ImagePainterState extends State<ImagePainter> {
                       maxScale: 2.4,
                       minScale: 1,
                       panEnabled: _controller.mode == PaintMode.none,
-                      scaleEnabled: widget.isScalable!,
+                      scaleEnabled: widget.isScalable! || _controller.mode == PaintMode.none,
                       onInteractionUpdate: _scaleUpdateGesture,
                       onInteractionStart: _scaleStartGesturePin,
                       onInteractionEnd: _scaleEndGesture,
