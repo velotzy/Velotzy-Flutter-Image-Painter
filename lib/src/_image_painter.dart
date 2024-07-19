@@ -114,6 +114,39 @@ class DrawImage extends CustomPainter {
                   _offset[0]!.dy - textPainter.height / 2);
           textPainter.paint(canvas, textOffset);
           break;
+        case PaintMode.pin:
+        final fontStyle = TextStyle(
+          inherit: false,
+          color: Colors.red,
+          fontSize: 12,
+          fontFamily: Icons.location_pin.fontFamily,
+          package: Icons.location_pin.fontPackage,
+          fontFamilyFallback: Icons.location_pin.fontFamilyFallback,
+          // Makes sure the font's body is vertically centered within the
+          // iconSize x iconSize square.
+          height: 1.0,
+          leadingDistribution: TextLeadingDistribution.even,
+        );
+          final iconText = String.fromCharCode(Icons.location_pin.codePoint);
+          final textSpan = TextSpan(
+            text: iconText,
+            style: fontStyle.copyWith(color: _painter.color,
+              fontSize: 16 * _painter.strokeWidth,
+              fontWeight: FontWeight.bold,),
+          );
+          final textPainter = TextPainter(
+            text: textSpan,
+            textAlign: TextAlign.center,
+            textDirection: TextDirection.ltr,
+          );
+          textPainter.layout(minWidth: 0, maxWidth: size.width);
+          final textOffset = _offset.isEmpty
+              ? Offset(size.width / 2 - textPainter.width / 2,
+                  size.height / 2 - textPainter.height / 2)
+              : Offset(_offset[0]!.dx - textPainter.width / 2,
+                  _offset[0]!.dy - textPainter.height / 2);
+          textPainter.paint(canvas, textOffset);
+          break;
         default:
       }
     }
@@ -229,6 +262,8 @@ enum PaintMode {
 
   ///Allows to write texts over an image.
   text,
+
+  pin,
 
   ///Allows us to draw line with arrow at the end point.
   arrow,

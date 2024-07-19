@@ -84,6 +84,10 @@ List<ModeData> paintModes(TextDelegate textDelegate) => [
           icon: Icons.text_format,
           mode: PaintMode.text,
           label: textDelegate.text),
+      ModeData(
+          icon: Icons.location_pin,
+          mode: PaintMode.pin,
+          label: textDelegate.pin),
     ];
 
 @immutable

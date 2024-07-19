@@ -11,6 +11,7 @@ class TextDelegate {
   final String changeColor = "Change Color";
   final String changeBrushSize = "Change Brush Size";
   final String undo = "Undo";
+  final String pin = "Pin";
   final String done = "Done";
   final String clearAllProgress = "Clear All Progress";
 }

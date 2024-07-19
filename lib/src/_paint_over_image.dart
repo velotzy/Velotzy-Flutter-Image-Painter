@@ -523,6 +523,7 @@ class ImagePainterState extends State<ImagePainter> {
                       panEnabled: _controller.mode == PaintMode.none,
                       scaleEnabled: widget.isScalable!,
                       onInteractionUpdate: _scaleUpdateGesture,
+                      onInteractionStart: _scaleStartGesturePin,
                       onInteractionEnd: _scaleEndGesture,
                       child: CustomPaint(
                         size: imageSize,
@@ -614,6 +615,30 @@ class ImagePainterState extends State<ImagePainter> {
     }
   }
 
+  void _scaleStartGesturePin(ScaleStartDetails onUpdate) {
+    final _zoomAdjustedOffset =
+        _transformationController.toScene(onUpdate.localFocalPoint);
+    _controller.setInProgress(true);
+    if (_controller.start == null) {
+      _controller.setStart(_zoomAdjustedOffset);
+    }
+    _controller.setEnd(_zoomAdjustedOffset);
+    if (_controller.mode == PaintMode.pin) {
+      _addPaintHistory(
+            PaintInfo(
+              mode: PaintMode.text,
+              text: _textController.text,
+              offsets: [],
+              color: _controller.color,
+              strokeWidth: _controller.scaledStrokeWidth,
+            ),
+          );
+    }
+    
+  }
+
+  
+
   ///Fires while user is interacting with the screen to record painting.
   void _scaleUpdateGesture(ScaleUpdateDetails onUpdate) {
     final _zoomAdjustedOffset =
@@ -626,12 +651,14 @@ class ImagePainterState extends State<ImagePainter> {
     if (_controller.mode == PaintMode.freeStyle) {
       _controller.addOffsets(_zoomAdjustedOffset);
     }
+    
     if (_controller.onTextUpdateMode) {
       _controller.paintHistory
           .lastWhere((element) => element.mode == PaintMode.text)
           .offsets = [_zoomAdjustedOffset];
     }
   }
+
 
   ///Fires when user stops interacting with the screen.
   void _scaleEndGesture(ScaleEndDetails onEnd) {
@@ -888,6 +915,7 @@ class ImagePainterState extends State<ImagePainter> {
               }
             },
           ),
+          
           const Spacer(),
           IconButton(
             tooltip: textDelegate.undo,

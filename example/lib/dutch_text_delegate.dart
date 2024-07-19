@@ -41,5 +41,8 @@ class DutchTextDelegate implements TextDelegate {
   String get text => "Tekst";
 
   @override
+  String get pin => "Pin";
+
+  @override
   String get undo => "ongedaan maken";
 }
