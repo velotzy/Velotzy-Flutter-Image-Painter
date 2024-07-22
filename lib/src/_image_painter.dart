@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart' hide Image;
@@ -115,24 +116,27 @@ class DrawImage extends CustomPainter {
           textPainter.paint(canvas, textOffset);
           break;
         case PaintMode.pin:
-        final fontStyle = TextStyle(
-          inherit: false,
-          color: Colors.red,
-          fontSize: 12,
-          fontFamily: Icons.location_pin.fontFamily,
-          package: Icons.location_pin.fontPackage,
-          fontFamilyFallback: Icons.location_pin.fontFamilyFallback,
-          // Makes sure the font's body is vertically centered within the
-          // iconSize x iconSize square.
-          height: 1.0,
-          leadingDistribution: TextLeadingDistribution.even,
-        );
+        log('add pin');;
+          final fontStyle = TextStyle(
+            inherit: false,
+            color: Colors.red,
+            fontSize: 12,
+            fontFamily: Icons.location_pin.fontFamily,
+            package: Icons.location_pin.fontPackage,
+            fontFamilyFallback: Icons.location_pin.fontFamilyFallback,
+            // Makes sure the font's body is vertically centered within the
+            // iconSize x iconSize square.
+            height: 1.0,
+            leadingDistribution: TextLeadingDistribution.even,
+          );
           final iconText = String.fromCharCode(Icons.location_pin.codePoint);
           final textSpan = TextSpan(
             text: iconText,
-            style: fontStyle.copyWith(color: _painter.color,
+            style: fontStyle.copyWith(
+              color: _painter.color,
               fontSize: 16 * _painter.strokeWidth,
-              fontWeight: FontWeight.bold,),
+              fontWeight: FontWeight.bold,
+            ),
           );
           final textPainter = TextPainter(
             text: textSpan,

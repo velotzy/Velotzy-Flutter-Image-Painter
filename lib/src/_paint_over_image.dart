@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:ui' as ui;
 
@@ -618,23 +619,27 @@ class ImagePainterState extends State<ImagePainter> {
   void _scaleStartGesturePin(ScaleStartDetails onUpdate) {
     final _zoomAdjustedOffset =
         _transformationController.toScene(onUpdate.localFocalPoint);
-    _controller.setInProgress(true);
-    if (_controller.start == null) {
-      _controller.setStart(_zoomAdjustedOffset);
-    }
-    _controller.setEnd(_zoomAdjustedOffset);
-    if (_controller.mode == PaintMode.pin) {
-      _addPaintHistory(
-            PaintInfo(
-              mode: PaintMode.text,
-              text: _textController.text,
-              offsets: [],
-              color: _controller.color,
-              strokeWidth: _controller.scaledStrokeWidth,
-            ),
-          );
-    }
     
+    if (onUpdate.pointerCount < 2) {
+      log(onUpdate.pointerCount.toString());
+      _controller.setInProgress(true);
+      if (_controller.start == null) {
+        _controller.setStart(_zoomAdjustedOffset);
+      }
+      _controller.setEnd(_zoomAdjustedOffset);
+      if (_controller.mode == PaintMode.pin) {
+         _addEndPoints();
+        _addPaintHistory(
+          PaintInfo(
+            mode: PaintMode.text,
+            text: _textController.text,
+            offsets: [],
+            color: _controller.color,
+            strokeWidth: _controller.scaledStrokeWidth,
+          ),
+        );
+      }
+    }
   }
 
   
@@ -643,6 +648,7 @@ class ImagePainterState extends State<ImagePainter> {
   void _scaleUpdateGesture(ScaleUpdateDetails onUpdate) {
     final _zoomAdjustedOffset =
         _transformationController.toScene(onUpdate.localFocalPoint);
+        if (onUpdate.pointerCount < 2) {
     _controller.setInProgress(true);
     if (_controller.start == null) {
       _controller.setStart(_zoomAdjustedOffset);
@@ -656,13 +662,14 @@ class ImagePainterState extends State<ImagePainter> {
       _controller.paintHistory
           .lastWhere((element) => element.mode == PaintMode.text)
           .offsets = [_zoomAdjustedOffset];
-    }
+    }}
   }
 
 
   ///Fires when user stops interacting with the screen.
   void _scaleEndGesture(ScaleEndDetails onEnd) {
     _controller.setInProgress(false);
+    if (onEnd.pointerCount < 2) {
     if (_controller.start != null &&
         _controller.end != null &&
         (_controller.mode == PaintMode.freeStyle)) {
@@ -671,9 +678,9 @@ class ImagePainterState extends State<ImagePainter> {
       _controller.offsets.clear();
     } else if (_controller.start != null &&
         _controller.end != null &&
-        _controller.mode != PaintMode.text) {
+        _controller.mode != PaintMode.text && _controller.mode != PaintMode.pin) {
       _addEndPoints();
-    }
+    }}
     _controller.resetStartAndEnd();
   }
 
